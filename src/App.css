@@ -1,0 +1,84 @@
+/* src/App.css */
+:root {
+  --root-bg: #fff;
+  --text-color: #000;
+  --primary-color: #2e805e;
+  --primary-color-hover: hsl(from var(--primary-color) h s calc(l - 10));
+  --secondary-color: #6c757d;
+  --secondary-color-hover: hsl(from var(--secondary-color) h s calc(l - 10));
+  --header-bg: var(--primary-color);
+  --header-color: #fff;
+  --card-border-color: #ccc;
+}
+
+body {
+  background-color: var(--root-bg) !important;
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+main {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/* --- Стили для Header --- */
+.app-header {
+  background-color: var(--header-bg) !important;
+}
+.app-header .navbar-brand {
+  color: var(--header-color) !important;
+}
+.app-header .navbar-brand:hover {
+  color: hsl(from var(--header-color) h s calc(l - 20)) !important;
+}
+
+/* --- Стили для кнопок --- */
+.btn-primary {
+  --bs-btn-bg: var(--primary-color);
+  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-hover-bg: var(--primary-color-hover);
+  --bs-btn-hover-border-color: var(--primary-color-hover);
+  --bs-btn-color: var(--header-color);
+  --bs-btn-hover-color: var(--header-color);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--secondary-color);
+  --bs-btn-border-color: var(--secondary-color);
+  --bs-btn-hover-bg: var(--secondary-color-hover);
+  --bs-btn-hover-border-color: var(--secondary-color-hover);
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+/* --- Стили для карточек --- */
+.card {
+  border: 1px solid var(--card-border-color) !important;
+  border-radius: 16px !important;
+}
+
+.card-img,
+.card-img-top {
+  height: 150px; /* Как в .element-preview */
+  width: 100%;
+  object-fit: cover;
+  padding: 10px; /* Добавим небольшой отступ */
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.card-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Отступ между кнопками */
+}
+
+/* --- Стили для страницы списка --- */
+.page-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
