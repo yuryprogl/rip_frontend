@@ -1,73 +1,11 @@
-# React + TypeScript + Vite
+Лабораторная 5
+Цель работы: Разработка базового SPA на React
+Порядок показа: Показать три страницы фронтенда с mock без запущенного сервиса. Далее показать страницы фронтенда с бэкендом, показать в network адрес fetch через proxy, названия и адреса из minio для изображений. Внести изменения в БД, показать их во фронтенде. Объяснить код компонентов для фильтрации, передаваемые props, хуки, вызовы fetch.
+Контрольные вопросы: react, props и состояние, компонент и элемент, useState и useEffect, жизненный цикл компонента, CORS и обратный прокси, Vite и Babel, BFF и GraphQL, Next.js и SSG, FSD
+Диаграмма классов с детализацией бэкенда и фронтенда: добавить методы авторизации, фронтенд разделить на страницы, добавить у страниц зависимость от API.
+Задание: Разработать три страницы фронтенд приложения на React, TS и подключить его к веб-сервису
+Разработать базовый интерфейс приложения на React для гостя, аналогичный двум страницам из лабораторной работы №1 для просмотра услуг, а также сделать главную (стартовую) страницу со статическим описанием. При этом на странице списка услуг должны быть все необходимые фильтры (по диапазону дат, названию, цене) с фильтрацией на бэкенде. Использовать компоненты React-Bootstrap. Для карточек предусмотреть изображение по-умолчанию, если поле в услуге пустое.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+В приложении должны быть навигационная панель navbar для списка базовых страниц, а также самописная навигационная цепочка breadcrumbs, где отображается путь от базовой страницы к текущей. В этой лабораторной никакого Redux, а Context вообще в курсе использовать нельзя.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Содержимое карточек получать из вашего веб-сервиса. Ajax-запросы написать самостоятельно через fetch. Ограничение с CORS решить через проксирование React. В методах fetch предусмотреть получение данных из коллекции с mock-объектами при отсутствии доступа к вашему бэкенду.
