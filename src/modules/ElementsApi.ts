@@ -1,34 +1,52 @@
-import type { Element, CartInfo } from "./ElementsTypes"; // Добавляем CartInfo
+import type { Element, CartInfo } from "./ElementsTypes";
 import { ELEMENTS_MOCK } from "./mock";
 
-/**
- * Получает список всех элементов с возможностью фильтрации.
- * При ошибке запроса к API возвращает mock-данные.
- * @param nameFilter - Строка для фильтрации по имени.
- */
+// ВАШ РАБОЧИЙ IP (из curl)
+const LAN_IP = "192.168.1.25";
+const LAN_API_URL = `http://${LAN_IP}:8000`;
+const MINIO_URL = `http://${LAN_IP}:9000`;
+
+// Проверка среды запуска
+const IS_TAURI =
+  typeof window !== "undefined" &&
+  typeof (window as any).__TAURI_INTERNALS__ !== "undefined";
+
+// В Tauri используем IP, в браузере (dev) - прокси или тот же IP
+const BASE_URL = IS_TAURI ? LAN_API_URL : LAN_API_URL;
+
+console.log(`API URL: ${BASE_URL}`);
+
 export async function listElements(nameFilter?: string): Promise<Element[]> {
   try {
     const params = new URLSearchParams();
-    // API ожидает параметр 'element_name'
-    if (nameFilter) {
-      params.append("element_name", nameFilter);
-    }
+    if (nameFilter) params.append("element_name", nameFilter);
 
-    // Запрос будет перенаправлен прокси-сервером Vite
-    const url = `/api/elements/?${params.toString()}`;
-
+    const url = `${BASE_URL}/api/elements/?${params.toString()}`;
     const response = await fetch(url);
 
-    if (!response.ok) {
-      // Если сервер вернул ошибку (4xx, 5xx), генерируем исключение, чтобы перейти в блок catch
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-    return await response.json();
+    const data: Element[] = await response.json();
+
+    // ФИКС КАРТИНОК: Заменяем localhost на IP локальной сети
+    return data.map((el) => {
+      if (el.image) {
+        // Если пришел localhost, меняем на 192.168.105.1
+        if (el.image.includes("localhost:9000")) {
+          el.image = el.image.replace("localhost:9000", `${LAN_IP}:9000`);
+        }
+        // Если пришел относительный путь (редко), добавляем полный адрес
+        else if (!el.image.startsWith("http")) {
+          el.image = `${MINIO_URL}${el.image}`;
+        }
+      }
+      return el;
+    });
   } catch (error) {
-    console.warn("API request failed. Falling back to mock data.", error);
+    console.error("API Error:", error);
+    if (IS_TAURI) alert(`Error: ${error}\nURL: ${BASE_URL}`);
 
-    // Логика fallback'а: фильтруем mock-данные, если был поисковый запрос
+    // Fallback
     if (nameFilter) {
       return ELEMENTS_MOCK.filter((element) =>
         element.name.toLowerCase().includes(nameFilter.toLowerCase())
@@ -38,40 +56,33 @@ export async function listElements(nameFilter?: string): Promise<Element[]> {
   }
 }
 
-/**
- * Получает один элемент по ID.
- * При ошибке запроса к API ищет элемент в mock-данных.
- * @param id - ID элемента.
- */
 export async function getElement(id: number): Promise<Element | null> {
   try {
-    const response = await fetch(`/api/elements/${id}/`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const response = await fetch(`${BASE_URL}/api/elements/${id}/`);
+    if (!response.ok) throw new Error(`${response.status}`);
+
+    const el: Element = await response.json();
+
+    // Тот же фикс для одной картинки
+    if (el.image) {
+      if (el.image.includes("localhost:9000")) {
+        el.image = el.image.replace("localhost:9000", `${LAN_IP}:9000`);
+      } else if (!el.image.startsWith("http")) {
+        el.image = `${MINIO_URL}${el.image}`;
+      }
     }
-    return await response.json();
+    return el;
   } catch (error) {
-    console.warn(
-      `API request for GET element ID:${id} failed. Falling back to mock data.`,
-      error
-    );
-    // При любой ошибке ищем в mock-данных
     return ELEMENTS_MOCK.find((element) => element.id === id) || null;
   }
 }
 
-export async function getCartInfo(): Promise<CartInfo> {
+export async function getCartInfoMock(): Promise<CartInfo> {
   try {
-    const response = await fetch("/api/forecasts/cart/");
-    if (!response.ok) {
-      // Аутентификация не реализована, поэтому ошибка 401/403 ожидаема.
-      // Мы просто перейдем в блок catch и вернем mock.
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    const response = await fetch(`${BASE_URL}/api/forecasts/cart/mock/`);
+    if (!response.ok) throw new Error(`${response.status}`);
     return await response.json();
   } catch (error) {
-    console.warn("Cart API request failed. Falling back to mock data.", error);
-    // Возвращаем mock-объект, если API недоступно или требует авторизации
-    return { elements_count: 0, draft_forecast: null };
+    return { elements_count: 0, draft_forecast: 0 };
   }
 }

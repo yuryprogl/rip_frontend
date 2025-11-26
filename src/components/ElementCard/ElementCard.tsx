@@ -27,9 +27,10 @@ export default function ElementCard({ element }: ElementCardProps) {
         </div>
         <div className="card-btns mt-3">
           <Row className="w-100">
-            <Col>
+            {/* Растягиваем кнопку "Открыть" на всю ширину, раз второй кнопки нет */}
+            <Col xs={12}>
               <Button
-                as={Link}
+                as={Link as any}
                 to={`/elements/${element.id}`}
                 variant="primary"
                 className="w-100"
@@ -37,12 +38,13 @@ export default function ElementCard({ element }: ElementCardProps) {
                 Открыть
               </Button>
             </Col>
+            {/* 
             <Col>
-              {/* Кнопка "Добавить" пока не будет работать, т.к. это не входит в задание */}
               <Button variant="secondary" className="w-100" disabled>
                 Добавить
               </Button>
-            </Col>
+            </Col> 
+            */}
           </Row>
         </div>
       </Card.Body>

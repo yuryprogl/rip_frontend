@@ -1,4 +1,3 @@
-/* src/App.css */
 :root {
   --root-bg: #fff;
   --text-color: #000;
@@ -15,25 +14,38 @@ body {
   background-color: var(--root-bg) !important;
   color: var(--text-color);
   min-height: 100vh;
+  margin: 0; /* Убираем отступы браузера по умолчанию */
 }
 
+/* УБИРАЕМ padding-top и padding-bottom, чтобы видео на Главной было на весь экран */
 main {
-  padding-top: 25px;
-  padding-bottom: 25px;
+  /* padding-top: 25px; */
+  /* padding-bottom: 25px; */
+  min-height: calc(
+    100vh - 56px
+  ); /* Высота минус хедер, чтобы футер прижимался если есть */
 }
 
 /* --- Стили для Header --- */
 .app-header {
   background-color: var(--header-bg) !important;
 }
-.app-header .navbar-brand {
+.app-header .navbar-brand,
+.app-header .nav-link {
   color: var(--header-color) !important;
 }
-.app-header .navbar-brand:hover {
+.app-header .navbar-brand:hover,
+.app-header .nav-link:hover {
   color: hsl(from var(--header-color) h s calc(l - 20)) !important;
 }
+.app-header .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.app-header .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
 
-/* --- Стили для кнопок --- */
+/* Остальные стили кнопок и карточек оставляем без изменений... */
 .btn-primary {
   --bs-btn-bg: var(--primary-color);
   --bs-btn-border-color: var(--primary-color);
@@ -54,7 +66,6 @@ main {
   box-shadow: none !important;
 }
 
-/* --- Стили для карточек --- */
 .card {
   border: 1px solid var(--card-border-color) !important;
   border-radius: 16px !important;
@@ -62,20 +73,19 @@ main {
 
 .card-img,
 .card-img-top {
-  height: 150px; /* Как в .element-preview */
+  height: 150px;
   width: 100%;
   object-fit: cover;
-  padding: 10px; /* Добавим небольшой отступ */
+  padding: 10px;
   border-radius: 16px 16px 0 0 !important;
 }
 
 .card-btns {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Отступ между кнопками */
+  gap: 10px;
 }
 
-/* --- Стили для страницы списка --- */
 .page-controls {
   display: flex;
   justify-content: space-between;
