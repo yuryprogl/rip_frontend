@@ -1,30 +1,38 @@
 // src/pages/ElementsPage.tsx
 import { useEffect, useState } from "react";
-import { Container, Spinner, Alert, Row, Col } from "react-bootstrap";
+import { Container, Spinner, Alert, Col } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux"; // Redux
+import type { RootState } from "../store/store"; // Redux
+import { setSearchQuery } from "../store/filterSlice"; // Redux
+
 import BreadCrumbs from "../components/BreadCrumbs/BreadCrumbs";
 import { ROUTE_LABELS } from "../Routes";
-import { listElements, getCartInfo } from "../modules/ElementsApi"; // Импортируем getCartInfo
+import { listElements, getCartInfoMock } from "../modules/ElementsApi";
 import type { Element } from "../modules/ElementsTypes";
 import Search from "../components/Search/Search";
 import ElementsList from "../components/ElementsList/ElementsList";
-import CartWidget from "../components/CartWidget/CartWidget"; // Импортируем новый компонент
+import CartWidget from "../components/CartWidget/CartWidget";
 
 export default function ElementsPage() {
   const [elements, setElements] = useState<Element[]>([]);
-  const [cartCount, setCartCount] = useState(0); // Новое состояние для счетчика корзины
-  const [searchQuery, setSearchQuery] = useState("");
+  const [cartCount, setCartCount] = useState(0);
+
+  // REDUX: Достаем значение из стора
+  const searchQuery = useSelector(
+    (state: RootState) => state.filter.searchQuery
+  );
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Объединяем загрузку данных в одну функцию
   const loadPageData = async () => {
     setLoading(true);
     setError(null);
     try {
-      // Запускаем оба запроса параллельно для ускорения загрузки
       const [elementsData, cartData] = await Promise.all([
-        listElements(searchQuery), // Передаем searchQuery для фильтрации
-        getCartInfo(),
+        listElements(searchQuery),
+        getCartInfoMock(),
       ]);
 
       setElements(elementsData);
@@ -40,32 +48,32 @@ export default function ElementsPage() {
     }
   };
 
-  // Загружаем данные только один раз при первом рендере
   useEffect(() => {
     loadPageData();
-  }, []); // Пустой массив зависимостей
+  }, []); // Загружаем один раз при маунте, используя сохраненный query
 
-  // Обработчик для кнопки поиска
   const handleSearch = () => {
-    // При поиске нам не нужно перезапрашивать корзину, только список элементов
-    // Но для простоты в этой лабе будем перезапрашивать все
     loadPageData();
   };
 
+  // Обертка для dispatch
+  const handleQueryChange = (val: string) => {
+    dispatch(setSearchQuery(val));
+  };
+
   return (
-    <Container as="main">
+    <Container className="py-5 mt-3">
       <BreadCrumbs crumbs={[{ label: ROUTE_LABELS.ELEMENTS }]} />
 
       <div className="page-controls mt-3">
         <Col md={8}>
           <Search
             query={searchQuery}
-            onQueryChange={setSearchQuery}
+            onQueryChange={handleQueryChange} // Передаем новую функцию
             onSearch={handleSearch}
           />
         </Col>
         <Col md={4} className="d-flex justify-content-end">
-          {/* Заменяем старую кнопку на новый компонент */}
           <CartWidget count={cartCount} />
         </Col>
       </div>
@@ -74,7 +82,7 @@ export default function ElementsPage() {
         <div className="text-center py-5">
           <Spinner animation="border" />
         </div>
-      ) : error && elements.length === 0 ? ( // Условие для показа ошибки
+      ) : error && elements.length === 0 ? (
         <Alert variant="warning" className="text-center">
           {error}
         </Alert>

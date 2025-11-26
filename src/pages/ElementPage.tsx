@@ -60,7 +60,7 @@ export default function ElementPage() {
     return (
       <Container className="text-center py-5">
         <Alert variant="danger">{error}</Alert>
-        <Button as={Link} to={ROUTES.ELEMENTS} variant="primary">
+        <Button as={Link as any} to={ROUTES.ELEMENTS} variant="primary">
           Вернуться к списку
         </Button>
       </Container>
@@ -71,7 +71,7 @@ export default function ElementPage() {
   if (!element) return null;
 
   return (
-    <Container className="py-4">
+    <Container as="main" className="py-4">
       <BreadCrumbs
         crumbs={[
           { label: ROUTE_LABELS.ELEMENTS, path: ROUTES.ELEMENTS },
@@ -93,7 +93,11 @@ export default function ElementPage() {
           <p className="text-muted fs-5">Формула: {element.formula}</p>
           <p className="mt-3 flex-grow-1">{element.description}</p>
           <div className="mt-4">
-            <Button as={Link} to={ROUTES.ELEMENTS} variant="primary">
+            <Button
+              as={Link as any as any}
+              to={ROUTES.ELEMENTS}
+              variant="primary"
+            >
               Назад к списку
             </Button>
           </div>
