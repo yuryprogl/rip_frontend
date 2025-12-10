@@ -1,0 +1,1325 @@
+
+
+### FILE: tsconfig.node.json
+
+================================================================================
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+
+================================================================================
+
+
+### FILE: index.html
+
+================================================================================
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прогноз растворимости</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+================================================================================
+
+
+### FILE: tsconfig.app.json
+
+================================================================================
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": [
+      "vite/client",
+      "vite-plugin-pwa/info.d.ts",
+      "vite-plugin-pwa/client.d.ts"
+    ],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
+
+================================================================================
+
+
+### FILE: README.md
+
+================================================================================
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+================================================================================
+
+
+### FILE: package.json
+
+================================================================================
+{
+  "name": "lab6-pwa",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.11.0",
+    "bootstrap": "^5.3.8",
+    "react": "^19.1.1",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.1.1",
+    "react-redux": "^9.2.0",
+    "react-router-bootstrap": "^0.26.3",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/node": "^24.6.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@types/react-router-bootstrap": "^0.26.8",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "gh-pages": "^6.3.0",
+    "globals": "^16.4.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.45.0",
+    "vite": "^7.1.7",
+    "vite-plugin-pwa": "^1.1.0"
+  }
+}
+
+================================================================================
+
+
+### FILE: tsconfig.json
+
+================================================================================
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+
+================================================================================
+
+
+### FILE: eslint.config.js
+
+================================================================================
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+])
+
+================================================================================
+
+
+### FILE: vite.config.ts
+
+================================================================================
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
+
+// ВАЖНО: Замени на название своего репозитория!
+// Если репозиторий https://github.com/user/my-app, то пиши "/my-app/"
+const REPO_NAME = "/lab6-pwa";
+
+export default defineConfig({
+  // Базовый путь: в продакшене (GH Pages) используем имя репо, локально - корень
+  base: process.env.NODE_ENV === "production" ? REPO_NAME : "/",
+
+  server: {
+    // УБРАЛИ БЛОК HTTPS
+
+    // Прокси оставляем, чтобы локально работать с бэкендом
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/images": {
+        target: "http://127.0.0.1:9000",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+    port: 3000,
+    host: true,
+  },
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: "autoUpdate",
+      devOptions: {
+        enabled: true, // Включаем PWA на localhost для теста
+      },
+      manifest: {
+        name: "Прогноз Растворимости",
+        short_name: "Lab 6",
+        // start_url должен учитывать имя репозитория в продакшене
+        start_url: process.env.NODE_ENV === "production" ? REPO_NAME : "/",
+        display: "standalone",
+        background_color: "#ffffff",
+        theme_color: "#2e805e",
+        orientation: "portrait-primary",
+        icons: [
+          {
+            src: "logo192.png", // Убедись, что картинки есть в папке public
+            type: "image/png",
+            sizes: "192x192",
+          },
+          {
+            src: "logo512.png",
+            type: "image/png",
+            sizes: "512x512",
+          },
+        ],
+      },
+    }),
+  ],
+});
+
+================================================================================
+
+
+### FILE: src/Routes.ts
+
+================================================================================
+export const ROUTES = {
+  HOME: "/",
+  ELEMENTS: "/elements",
+  ELEMENT: "/elements/:id", // Динамический путь для конкретного элемента
+};
+
+export type RouteKeyType = keyof typeof ROUTES;
+
+// Метки для "хлебных крошек" и заголовков
+export const ROUTE_LABELS: { [key in RouteKeyType]: string } = {
+  HOME: "Главная",
+  ELEMENTS: "Элементы",
+  ELEMENT: "Элемент",
+};
+
+================================================================================
+
+
+### FILE: src/App.tsx
+
+================================================================================
+// src/App.tsx
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ROUTES } from "./Routes";
+import Header from "./components/Header/Header";
+import HomePage from "./pages/HomePage";
+import ElementsPage from "./pages/ElementsPage";
+import ElementPage from "./pages/ElementPage";
+
+// Укажи здесь имя своего репозитория, например "/lab5"
+const REPO_NAME = "/lab6-pwa";
+
+function App() {
+  return (
+    // Добавляем basename только для продакшена (когда деплоим)
+    // Но для теста можно оставить жестко
+    <BrowserRouter basename={import.meta.env.DEV ? "/" : REPO_NAME}>
+      <Header />
+      <main>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.ELEMENTS} element={<ElementsPage />} />
+          <Route path={ROUTES.ELEMENT} element={<ElementPage />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
+  );
+}
+export default App;
+
+================================================================================
+
+
+### FILE: src/main.tsx
+
+================================================================================
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import App from "./App.tsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+
+// Импорт регистрации PWA
+import { registerSW } from "virtual:pwa-register";
+
+// Регистрация SW
+if ("serviceWorker" in navigator) {
+  registerSW();
+}
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+================================================================================
+
+
+### FILE: src/App.css
+
+================================================================================
+:root {
+  --root-bg: #fff;
+  --text-color: #000;
+  --primary-color: #2e805e;
+  --primary-color-hover: hsl(from var(--primary-color) h s calc(l - 10));
+  --secondary-color: #6c757d;
+  --secondary-color-hover: hsl(from var(--secondary-color) h s calc(l - 10));
+  --header-bg: var(--primary-color);
+  --header-color: #fff;
+  --card-border-color: #ccc;
+}
+
+body {
+  background-color: var(--root-bg) !important;
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0; /* Убираем отступы браузера по умолчанию */
+}
+
+/* УБИРАЕМ padding-top и padding-bottom, чтобы видео на Главной было на весь экран */
+main {
+  /* padding-top: 25px; */
+  /* padding-bottom: 25px; */
+  min-height: calc(
+    100vh - 56px
+  ); /* Высота минус хедер, чтобы футер прижимался если есть */
+}
+
+/* --- Стили для Header --- */
+.app-header {
+  background-color: var(--header-bg) !important;
+}
+.app-header .navbar-brand,
+.app-header .nav-link {
+  color: var(--header-color) !important;
+}
+.app-header .navbar-brand:hover,
+.app-header .nav-link:hover {
+  color: hsl(from var(--header-color) h s calc(l - 20)) !important;
+}
+.app-header .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.app-header .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Остальные стили кнопок и карточек оставляем без изменений... */
+.btn-primary {
+  --bs-btn-bg: var(--primary-color);
+  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-hover-bg: var(--primary-color-hover);
+  --bs-btn-hover-border-color: var(--primary-color-hover);
+  --bs-btn-color: var(--header-color);
+  --bs-btn-hover-color: var(--header-color);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--secondary-color);
+  --bs-btn-border-color: var(--secondary-color);
+  --bs-btn-hover-bg: var(--secondary-color-hover);
+  --bs-btn-hover-border-color: var(--secondary-color-hover);
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.card {
+  border: 1px solid var(--card-border-color) !important;
+  border-radius: 16px !important;
+}
+
+.card-img,
+.card-img-top {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  padding: 10px;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.card-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+================================================================================
+
+
+### FILE: src/index.css
+
+================================================================================
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+================================================================================
+
+
+### FILE: src/components/ElementsList/ElementsList.tsx
+
+================================================================================
+import { Row, Col } from "react-bootstrap";
+import ElementCard from "../ElementCard/ElementCard";
+import { type Element } from "../../modules/ElementsTypes";
+
+interface ElementsListProps {
+  elements: Element[];
+}
+
+export default function ElementsList({ elements }: ElementsListProps) {
+  return (
+    <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+      {elements.map((el) => (
+        <Col key={el.id}>
+          <ElementCard element={el} />
+        </Col>
+      ))}
+    </Row>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/ElementCard/ElementCard.tsx
+
+================================================================================
+// src/components/ElementCard/ElementCard.tsx
+import { Card, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import type { Element } from "../../modules/ElementsTypes";
+import defaultImage from "../../assets/default-image.png";
+
+interface ElementCardProps {
+  element: Element;
+}
+
+export default function ElementCard({ element }: ElementCardProps) {
+  const imageUrl = element.image || defaultImage;
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = defaultImage;
+  };
+
+  return (
+    <Card className="h-100">
+      <Card.Img variant="top" src={imageUrl} onError={handleImageError} />
+      <Card.Body className="d-flex flex-column">
+        <div className="flex-grow-1">
+          <Card.Title as="h5">{element.name}</Card.Title>
+          <Card.Text className="text-muted small">
+            Формула: {element.formula}
+          </Card.Text>
+        </div>
+        <div className="card-btns mt-3">
+          <Row className="w-100">
+            {/* Растягиваем кнопку "Открыть" на всю ширину, раз второй кнопки нет */}
+            <Col xs={12}>
+              <Button
+                as={Link as any}
+                to={`/elements/${element.id}`}
+                variant="primary"
+                className="w-100"
+              >
+                Открыть
+              </Button>
+            </Col>
+            {/* 
+            <Col>
+              <Button variant="secondary" className="w-100" disabled>
+                Добавить
+              </Button>
+            </Col> 
+            */}
+          </Row>
+        </div>
+      </Card.Body>
+    </Card>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/Search/Search.tsx
+
+================================================================================
+import { Form, Row, Col, Button } from "react-bootstrap";
+
+interface SearchProps {
+  query: string;
+  onQueryChange: (query: string) => void;
+  onSearch: () => void;
+}
+
+export default function Search({
+  query,
+  onQueryChange,
+  onSearch,
+}: SearchProps) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSearch();
+  };
+
+  return (
+    <Form onSubmit={handleSubmit} className="w-100">
+      <Row>
+        <Col xs={8}>
+          <Form.Control
+            type="text"
+            placeholder="Введите название"
+            value={query}
+            onChange={(e) => onQueryChange(e.target.value)}
+          />
+        </Col>
+        <Col xs={4}>
+          <Button variant="primary" type="submit" className="w-100">
+            Поиск
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/CartWidget/CartWidget.tsx
+
+================================================================================
+import { Button, Badge } from "react-bootstrap";
+import cartIcon from "../../assets/cart.svg"; // Убедитесь, что иконка лежит здесь
+
+interface CartWidgetProps {
+  count: number;
+}
+
+export default function CartWidget({ count }: CartWidgetProps) {
+  return (
+    // position-relative нужен, чтобы значок позиционировался относительно кнопки
+    <Button variant="primary" className="position-relative" disabled>
+      <img
+        src={cartIcon}
+        alt="Корзина"
+        style={{ width: "32px", height: "32px" }}
+      />
+
+      {/* Отображаем значок, только если в корзине есть товары 
+      {count > 0 && (
+        <Badge
+          pill
+          bg="danger" // Яркий цвет для привлечения внимания
+          className="position-absolute top-0 start-100 translate-middle"
+        >
+          {count}
+        </Badge>
+      )}*/}
+      <Badge
+        pill
+        bg="danger" // Яркий цвет для привлечения внимания
+        className="position-absolute top-0 start-100 translate-middle"
+      >
+        {count}
+      </Badge>
+    </Button>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/BreadCrumbs/BreadCrumbs.tsx
+
+================================================================================
+// src/components/BreadCrumbs/BreadCrumbs.tsx
+
+import { Breadcrumb } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { ROUTES } from "../../Routes";
+
+// Интерфейс для описания одной "крошки"
+interface Crumb {
+  label: string; // Текст, который видит пользователь
+  path?: string; // Путь для ссылки (необязательный, т.к. последняя крошка не ссылка)
+}
+
+// Интерфейс для пропсов компонента
+interface BreadCrumbsProps {
+  crumbs: Crumb[];
+}
+
+export default function BreadCrumbs({ crumbs }: BreadCrumbsProps) {
+  return (
+    <Breadcrumb>
+      {/* Первая крошка - всегда ссылка на главную страницу */}
+      <LinkContainer to={ROUTES.HOME}>
+        <Breadcrumb.Item>Главная</Breadcrumb.Item>
+      </LinkContainer>
+
+      {/* Проходим по массиву крошек, который получили через props */}
+      {crumbs.map((crumb, index) => {
+        // Если у крошки есть путь и это не последняя крошка в массиве, делаем ее ссылкой
+        const isLast = index === crumbs.length - 1;
+        if (crumb.path && !isLast) {
+          return (
+            <LinkContainer key={index} to={crumb.path}>
+              <Breadcrumb.Item>{crumb.label}</Breadcrumb.Item>
+            </LinkContainer>
+          );
+        } else {
+          // Иначе делаем ее неактивным текстом
+          return (
+            <Breadcrumb.Item key={index} active>
+              {crumb.label}
+            </Breadcrumb.Item>
+          );
+        }
+      })}
+    </Breadcrumb>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/Header/Header.tsx
+
+================================================================================
+// src/components/Header/Header.tsx
+import { Container, Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../Routes";
+
+export default function Header() {
+  return (
+    <Navbar expand="lg" sticky="top" className="app-header" variant="dark">
+      <Container>
+        <Navbar.Brand as={Link} to={ROUTES.HOME}>
+          Прогноз растворимости
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to={ROUTES.HOME}>
+              Главная
+            </Nav.Link>
+            <Nav.Link as={Link} to={ROUTES.ELEMENTS}>
+              Элементы
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/modules/mock.ts
+
+================================================================================
+import { type Element } from "./ElementsTypes";
+
+export const ELEMENTS_MOCK: Element[] = [
+  {
+    id: 1,
+    name: "Карбонат кальция (Mock)",
+    description:
+      "Неорганическое соединение, соль угольной кислоты и кальция. Данные загружены из mock-файла.",
+    formula: "CaCO₃",
+    image: "/images/1.png", // Путь к картинке в Minio
+  },
+  {
+    id: 2,
+    name: "Гидроксид меди (II) (Mock)",
+    description:
+      "Нерастворимое в воде голубое твердое вещество. Данные загружены из mock-файла.",
+    formula: "Cu(OH)₂",
+    image: "/images/2.png",
+  },
+  {
+    id: 3,
+    name: "Сульфат бария (Mock)",
+    description:
+      "Нерастворимое в воде неорганическое вещество белого цвета. Данные загружены из mock-файла.",
+    formula: "BaSO₄",
+    image: null, // Пример элемента без картинки
+  },
+];
+
+================================================================================
+
+
+### FILE: src/modules/ElementsTypes.ts
+
+================================================================================
+export interface Element {
+  id: number;
+  name: string;
+  description: string;
+  formula: string;
+  image: string | null; // В вашем API поле называется 'image'
+}
+
+export interface CartInfo {
+  elements_count: number;
+  draft_forecast: number | null;
+}
+
+================================================================================
+
+
+### FILE: src/modules/ElementsApi.ts
+
+================================================================================
+import type { Element, CartInfo } from "./ElementsTypes";
+import { ELEMENTS_MOCK } from "./mock";
+
+// ... (функции listElements и getElement остаются без изменений) ...
+
+export async function listElements(nameFilter?: string): Promise<Element[]> {
+  try {
+    const params = new URLSearchParams();
+    if (nameFilter) {
+      params.append("element_name", nameFilter);
+    }
+    const url = `/api/elements/?${params.toString()}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn("API request failed. Falling back to mock data.", error);
+    if (nameFilter) {
+      return ELEMENTS_MOCK.filter((element) =>
+        element.name.toLowerCase().includes(nameFilter.toLowerCase())
+      );
+    }
+    return ELEMENTS_MOCK;
+  }
+}
+
+export async function getElement(id: number): Promise<Element | null> {
+  try {
+    const response = await fetch(`/api/elements/${id}/`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn(
+      `API request for GET element ID:${id} failed. Falling back to mock data.`,
+      error
+    );
+    return ELEMENTS_MOCK.find((element) => element.id === id) || null;
+  }
+}
+
+// Старая функция (оставляем для истории или если понадобится реальная корзина)
+export async function getCartInfo(): Promise<CartInfo> {
+  try {
+    const response = await fetch("/api/forecasts/cart/");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn("Cart API request failed. Falling back to mock data.", error);
+    return { elements_count: 0, draft_forecast: null };
+  }
+}
+
+// --- НОВАЯ ФУНКЦИЯ ---
+export async function getCartInfoMock(): Promise<CartInfo> {
+  try {
+    // Обращаемся к новому эндпоинту
+    const response = await fetch("/api/forecasts/cart/mock/");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.warn("Cart MOCK API request failed.", error);
+    // Возвращаем нули при ошибке
+    return { elements_count: 0, draft_forecast: 0 };
+  }
+}
+
+================================================================================
+
+
+### FILE: src/pages/ElementsPage.tsx
+
+================================================================================
+// src/pages/ElementsPage.tsx
+import { useEffect, useState } from "react";
+import { Container, Spinner, Alert, Col } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux"; // Redux
+import type { RootState } from "../store/store"; // Redux
+import { setSearchQuery } from "../store/filterSlice"; // Redux
+
+import BreadCrumbs from "../components/BreadCrumbs/BreadCrumbs";
+import { ROUTE_LABELS } from "../Routes";
+import { listElements, getCartInfoMock } from "../modules/ElementsApi";
+import type { Element } from "../modules/ElementsTypes";
+import Search from "../components/Search/Search";
+import ElementsList from "../components/ElementsList/ElementsList";
+import CartWidget from "../components/CartWidget/CartWidget";
+
+export default function ElementsPage() {
+  const [elements, setElements] = useState<Element[]>([]);
+  const [cartCount, setCartCount] = useState(0);
+
+  // REDUX: Достаем значение из стора
+  const searchQuery = useSelector(
+    (state: RootState) => state.filter.searchQuery
+  );
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadPageData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const [elementsData, cartData] = await Promise.all([
+        listElements(searchQuery),
+        getCartInfoMock(),
+      ]);
+
+      setElements(elementsData);
+      setCartCount(cartData.elements_count);
+
+      if (elementsData.length === 0 && searchQuery) {
+        setError(`Элементы по запросу "${searchQuery}" не найдены.`);
+      }
+    } catch (err) {
+      setError("Не удалось загрузить данные.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadPageData();
+  }, []); // Загружаем один раз при маунте, используя сохраненный query
+
+  const handleSearch = () => {
+    loadPageData();
+  };
+
+  // Обертка для dispatch
+  const handleQueryChange = (val: string) => {
+    dispatch(setSearchQuery(val));
+  };
+
+  return (
+    <Container className="py-5 mt-3">
+      <BreadCrumbs crumbs={[{ label: ROUTE_LABELS.ELEMENTS }]} />
+
+      <div className="page-controls mt-3">
+        <Col md={8}>
+          <Search
+            query={searchQuery}
+            onQueryChange={handleQueryChange} // Передаем новую функцию
+            onSearch={handleSearch}
+          />
+        </Col>
+        <Col md={4} className="d-flex justify-content-end">
+          <CartWidget count={cartCount} />
+        </Col>
+      </div>
+
+      {loading ? (
+        <div className="text-center py-5">
+          <Spinner animation="border" />
+        </div>
+      ) : error && elements.length === 0 ? (
+        <Alert variant="warning" className="text-center">
+          {error}
+        </Alert>
+      ) : (
+        <ElementsList elements={elements} />
+      )}
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/ElementPage.tsx
+
+================================================================================
+// src/pages/ElementPage.tsx
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  Spinner,
+  Container,
+  Row,
+  Col,
+  Image,
+  Alert,
+  Button,
+} from "react-bootstrap";
+import BreadCrumbs from "../components/BreadCrumbs/BreadCrumbs";
+import { ROUTES, ROUTE_LABELS } from "../Routes";
+import { getElement } from "../modules/ElementsApi";
+import type { Element } from "../modules/ElementsTypes";
+import defaultImage from "../assets/default-image.png";
+
+export default function ElementPage() {
+  const [element, setElement] = useState<Element | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { id } = useParams<{ id: string }>(); // Получаем id из URL
+
+  useEffect(() => {
+    if (!id) {
+      setLoading(false);
+      setError("ID элемента не указан в URL.");
+      return;
+    }
+
+    setLoading(true);
+    getElement(Number(id))
+      .then((data) => {
+        if (data) {
+          setElement(data);
+        } else {
+          setError("Элемент с таким ID не найден.");
+        }
+      })
+      .catch(() => {
+        setError("Произошла ошибка при загрузке данных.");
+      })
+      .finally(() => setLoading(false));
+  }, [id]); // Эффект будет перезапускаться, если id изменится
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = defaultImage;
+  };
+
+  if (loading) {
+    return (
+      <Container className="text-center py-5">
+        <Spinner animation="border" style={{ width: "3rem", height: "3rem" }} />
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container className="text-center py-5">
+        <Alert variant="danger">{error}</Alert>
+        <Button as={Link as any} to={ROUTES.ELEMENTS} variant="primary">
+          Вернуться к списку
+        </Button>
+      </Container>
+    );
+  }
+
+  // element не может быть null на этом этапе, но TypeScript этого не знает
+  if (!element) return null;
+
+  return (
+    <Container as="main" className="py-4">
+      <BreadCrumbs
+        crumbs={[
+          { label: ROUTE_LABELS.ELEMENTS, path: ROUTES.ELEMENTS },
+          { label: element.name }, // Последняя крошка - не ссылка
+        ]}
+      />
+      <Row className="mt-4 g-4">
+        <Col md={5} lg={4}>
+          <Image
+            src={element.image || defaultImage}
+            onError={handleImageError}
+            fluid
+            rounded
+            className="shadow-sm"
+          />
+        </Col>
+        <Col md={7} lg={8} className="d-flex flex-column">
+          <h1>{element.name}</h1>
+          <p className="text-muted fs-5">Формула: {element.formula}</p>
+          <p className="mt-3 flex-grow-1">{element.description}</p>
+          <div className="mt-4">
+            <Button
+              as={Link as any as any}
+              to={ROUTES.ELEMENTS}
+              variant="primary"
+            >
+              Назад к списку
+            </Button>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/HomePage.tsx
+
+================================================================================
+import { Container } from "react-bootstrap";
+
+export default function HomePage() {
+  return (
+    <div
+      style={{
+        position: "relative",
+        // Высота рассчитывается так, чтобы занять все место под хедером
+        height: "calc(100vh - 56px)",
+        width: "100%",
+        overflow: "hidden",
+      }}
+    >
+      {/* Фоновое видео */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          width: "100vw", // Растягиваем на ширину вьюпорта
+          height: "100vh", // Растягиваем на высоту вьюпорта (с запасом)
+          objectFit: "cover", // Сохраняем пропорции, обрезая лишнее
+          transform: "translate(-50%, -50%)",
+          zIndex: 0,
+        }}
+      >
+        <source src="/background.mp4" type="video/mp4" />
+        Ваш браузер не поддерживает видео.
+      </video>
+
+      {/* Затемнение */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.6)", // Чуть темнее для контраста
+          zIndex: 1,
+        }}
+      ></div>
+
+      {/* Контент */}
+      <Container
+        className="d-flex flex-column justify-content-center align-items-center text-center h-100"
+        style={{ position: "relative", zIndex: 2, color: "#fff" }}
+      >
+        <h1 className="display-3 fw-bold">Прогноз растворимости осадка</h1>
+        <p className="lead my-4">
+          Веб-приложение для анализа и прогнозирования растворимости химических
+          элементов.
+        </p>
+      </Container>
+    </div>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/store/store.tsx
+
+================================================================================
+// src/store/store.ts
+import { configureStore } from "@reduxjs/toolkit";
+import filterReducer from "./filterSlice";
+
+export const store = configureStore({
+  reducer: {
+    filter: filterReducer,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+================================================================================
+
+
+### FILE: src/store/filterSlice.tsx
+
+================================================================================
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit"; // <--- Исправление здесь
+
+interface FilterState {
+  searchQuery: string;
+}
+
+const initialState: FilterState = {
+  searchQuery: "",
+};
+
+export const filterSlice = createSlice({
+  name: "filter",
+  initialState,
+  reducers: {
+    // Теперь TypeScript понимает, что это типизация аргумента
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+      state.searchQuery = action.payload;
+    },
+  },
+});
+
+export const { setSearchQuery } = filterSlice.actions;
+export default filterSlice.reducer;
+
+================================================================================
