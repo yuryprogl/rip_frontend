@@ -1,0 +1,94 @@
+:root {
+  --root-bg: #fff;
+  --text-color: #000;
+  --primary-color: #2e805e;
+  --primary-color-hover: hsl(from var(--primary-color) h s calc(l - 10));
+  --secondary-color: #6c757d;
+  --secondary-color-hover: hsl(from var(--secondary-color) h s calc(l - 10));
+  --header-bg: var(--primary-color);
+  --header-color: #fff;
+  --card-border-color: #ccc;
+}
+
+body {
+  background-color: var(--root-bg) !important;
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0; /* Убираем отступы браузера по умолчанию */
+}
+
+/* УБИРАЕМ padding-top и padding-bottom, чтобы видео на Главной было на весь экран */
+main {
+  /* padding-top: 25px; */
+  /* padding-bottom: 25px; */
+  min-height: calc(
+    100vh - 56px
+  ); /* Высота минус хедер, чтобы футер прижимался если есть */
+}
+
+/* --- Стили для Header --- */
+.app-header {
+  background-color: var(--header-bg) !important;
+}
+.app-header .navbar-brand,
+.app-header .nav-link {
+  color: var(--header-color) !important;
+}
+.app-header .navbar-brand:hover,
+.app-header .nav-link:hover {
+  color: hsl(from var(--header-color) h s calc(l - 20)) !important;
+}
+.app-header .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.app-header .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Остальные стили кнопок и карточек оставляем без изменений... */
+.btn-primary {
+  --bs-btn-bg: var(--primary-color);
+  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-hover-bg: var(--primary-color-hover);
+  --bs-btn-hover-border-color: var(--primary-color-hover);
+  --bs-btn-color: var(--header-color);
+  --bs-btn-hover-color: var(--header-color);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--secondary-color);
+  --bs-btn-border-color: var(--secondary-color);
+  --bs-btn-hover-bg: var(--secondary-color-hover);
+  --bs-btn-hover-border-color: var(--secondary-color-hover);
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.card {
+  border: 1px solid var(--card-border-color) !important;
+  border-radius: 16px !important;
+}
+
+.card-img,
+.card-img-top {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  padding: 10px;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.card-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}

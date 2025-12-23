@@ -1,0 +1,2775 @@
+
+
+### FILE: tsconfig.node.json
+
+================================================================================
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+
+================================================================================
+
+
+### FILE: index.html
+
+================================================================================
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прогноз растворимости</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+================================================================================
+
+
+### FILE: tsconfig.app.json
+
+================================================================================
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": [
+      "vite/client",
+      "vite-plugin-pwa/info.d.ts",
+      "vite-plugin-pwa/client.d.ts"
+    ],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
+
+================================================================================
+
+
+### FILE: README.md
+
+================================================================================
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+================================================================================
+
+
+### FILE: package-lock.json
+
+================================================================================
+[Бинарный файл, содержимое пропущено]
+
+================================================================================
+
+
+### FILE: package.json
+
+================================================================================
+[Бинарный файл, содержимое пропущено]
+
+================================================================================
+
+
+### FILE: tsconfig.json
+
+================================================================================
+[Бинарный файл, содержимое пропущено]
+
+================================================================================
+
+### FILE: dev-dist/sw.js
+
+================================================================================
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// If the loader is already loaded, just stop.
+if (!self.define) {
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
+          }
+        })
+      
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
+    );
+  };
+
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
+      // Module is already loading or loaded.
+      return;
+    }
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
+    });
+  };
+}
+define(['./workbox-5a5d9309'], (function (workbox) { 'use strict';
+
+  self.skipWaiting();
+  workbox.clientsClaim();
+
+  /**
+   * The precacheAndRoute() method efficiently caches and responds to
+   * requests for URLs in the manifest.
+   * See https://goo.gl/S9QRab
+   */
+  workbox.precacheAndRoute([{
+    "url": "index.html",
+    "revision": "0.56dj3mftsu"
+  }], {});
+  workbox.cleanupOutdatedCaches();
+  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
+    allowlist: [/^\/$/]
+  }));
+
+}));
+
+================================================================================
+
+
+### FILE: eslint.config.js
+
+================================================================================
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+])
+
+================================================================================
+
+
+### FILE: vite.config.ts
+
+================================================================================
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
+
+// ВАЖНО: Замени на название своего репозитория!
+// Если репозиторий https://github.com/user/my-app, то пиши "/my-app/"
+const REPO_NAME = "/lab6-pwa";
+
+export default defineConfig({
+  // Базовый путь: в продакшене (GH Pages) используем имя репо, локально - корень
+  base: process.env.NODE_ENV === "production" ? REPO_NAME : "/",
+
+  server: {
+    // УБРАЛИ БЛОК HTTPS
+
+    // Прокси оставляем, чтобы локально работать с бэкендом
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/images": {
+        target: "http://127.0.0.1:9000",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+    port: 3000,
+    host: true,
+  },
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: "autoUpdate",
+      devOptions: {
+        enabled: true, // Включаем PWA на localhost для теста
+      },
+      manifest: {
+        name: "Прогноз Растворимости",
+        short_name: "Lab 6",
+        // start_url должен учитывать имя репозитория в продакшене
+        start_url: process.env.NODE_ENV === "production" ? REPO_NAME : "/",
+        display: "standalone",
+        background_color: "#ffffff",
+        theme_color: "#2e805e",
+        orientation: "portrait-primary",
+        icons: [
+          {
+            src: "logo192.png", // Убедись, что картинки есть в папке public
+            type: "image/png",
+            sizes: "192x192",
+          },
+          {
+            src: "logo512.png",
+            type: "image/png",
+            sizes: "512x512",
+          },
+        ],
+      },
+    }),
+  ],
+});
+
+================================================================================
+
+
+### FILE: src/Routes.ts
+
+================================================================================
+export const ROUTES = {
+  HOME: "/",
+  ELEMENTS: "/elements",
+  ELEMENT: "/elements/:id", // Динамический путь для конкретного элемента
+};
+
+export type RouteKeyType = keyof typeof ROUTES;
+
+// Метки для "хлебных крошек" и заголовков
+export const ROUTE_LABELS: { [key in RouteKeyType]: string } = {
+  HOME: "Главная",
+  ELEMENTS: "Элементы",
+  ELEMENT: "Элемент",
+};
+
+================================================================================
+
+
+### FILE: src/App.tsx
+
+================================================================================
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "./store/authSlice";
+import type { AppDispatch } from "./store/store";
+
+import Header from "./components/Header/Header";
+import HomePage from "./pages/HomePage";
+import ElementsPage from "./pages/ElementsPage";
+import ElementPage from "./pages/ElementPage"; // Существующая
+import LoginPage from "./pages/LoginPage";
+import ForecastsPage from "./pages/ForecastsPage"; // Новая
+import ForecastDetailPage from "./pages/ForecastDetailPage"; // Новая
+import ProfilePage from "./pages/ProfilePage"; // Сделай по аналогии с Login
+
+function App() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+  return (
+    <BrowserRouter>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/elements" element={<ElementsPage />} />
+          <Route path="/elements/:id" element={<ElementPage />} />
+
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+
+          <Route path="/forecasts" element={<ForecastsPage />} />
+          <Route path="/forecasts/:id" element={<ForecastDetailPage />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
+  );
+}
+export default App;
+
+================================================================================
+
+
+### FILE: src/main.tsx
+
+================================================================================
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import App from "./App.tsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+
+// Импорт регистрации PWA
+import { registerSW } from "virtual:pwa-register";
+
+// Регистрация SW
+if ("serviceWorker" in navigator) {
+  registerSW();
+}
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+================================================================================
+
+
+### FILE: src/types/index.ts
+
+================================================================================
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  is_superuser: boolean;
+}
+
+export interface Element {
+  id: number;
+  name: string;
+  description: string;
+  formula: string;
+  status: number; // 1 - действует, 2 - удален
+  image: string | null;
+}
+
+export interface Forecast {
+  id: number;
+  status: number; // 1-Черновик, 2-В работе, 3-Завершен, 4-Отклонен
+  status_name?: string; // Для удобства фронта
+  date_created: string;
+  date_formation: string | null;
+  date_complete: string | null;
+  owner: string; // Имя пользователя
+  moderator: string | null;
+  volume: number | null; // Поле пользователя
+}
+
+export interface ElementForecastItem {
+  id: number; // Используем как ID для ключей
+  name: string;
+  formula: string;
+  image: string | null;
+  // Поля связи м-м
+  temperature: number; // Вводимое
+  weight: number | null; // Вычисляемое
+}
+
+export interface ForecastDetail {
+  forecast: Forecast;
+  elements: ElementForecastItem[];
+}
+
+export interface CartInfo {
+  elements_count: number;
+  draft_forecast: number | null;
+}
+
+// Фильтры
+export interface ForecastFilters {
+  status?: string;
+  date_formation_start?: string;
+  date_formation_end?: string;
+}
+
+================================================================================
+
+
+### FILE: src/App.css
+
+================================================================================
+:root {
+  --root-bg: #fff;
+  --text-color: #000;
+  --primary-color: #2e805e;
+  --primary-color-hover: hsl(from var(--primary-color) h s calc(l - 10));
+  --secondary-color: #6c757d;
+  --secondary-color-hover: hsl(from var(--secondary-color) h s calc(l - 10));
+  --header-bg: var(--primary-color);
+  --header-color: #fff;
+  --card-border-color: #ccc;
+}
+
+body {
+  background-color: var(--root-bg) !important;
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0; /* Убираем отступы браузера по умолчанию */
+}
+
+/* УБИРАЕМ padding-top и padding-bottom, чтобы видео на Главной было на весь экран */
+main {
+  /* padding-top: 25px; */
+  /* padding-bottom: 25px; */
+  min-height: calc(
+    100vh - 56px
+  ); /* Высота минус хедер, чтобы футер прижимался если есть */
+}
+
+/* --- Стили для Header --- */
+.app-header {
+  background-color: var(--header-bg) !important;
+}
+.app-header .navbar-brand,
+.app-header .nav-link {
+  color: var(--header-color) !important;
+}
+.app-header .navbar-brand:hover,
+.app-header .nav-link:hover {
+  color: hsl(from var(--header-color) h s calc(l - 20)) !important;
+}
+.app-header .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.app-header .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Остальные стили кнопок и карточек оставляем без изменений... */
+.btn-primary {
+  --bs-btn-bg: var(--primary-color);
+  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-hover-bg: var(--primary-color-hover);
+  --bs-btn-hover-border-color: var(--primary-color-hover);
+  --bs-btn-color: var(--header-color);
+  --bs-btn-hover-color: var(--header-color);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--secondary-color);
+  --bs-btn-border-color: var(--secondary-color);
+  --bs-btn-hover-bg: var(--secondary-color-hover);
+  --bs-btn-hover-border-color: var(--secondary-color-hover);
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.card {
+  border: 1px solid var(--card-border-color) !important;
+  border-radius: 16px !important;
+}
+
+.card-img,
+.card-img-top {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  padding: 10px;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.card-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+================================================================================
+
+
+### FILE: src/index.css
+
+================================================================================
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+================================================================================
+
+
+### FILE: src/components/ElementsList/ElementsList.tsx
+
+================================================================================
+import { Row, Col } from "react-bootstrap";
+import ElementCard from "../ElementCard/ElementCard";
+import { type Element } from "../../types";
+
+interface ElementsListProps {
+  elements: Element[];
+  onAdd?: (id: number) => void;
+  showAddButton?: boolean;
+}
+
+export default function ElementsList({
+  elements,
+  onAdd,
+  showAddButton,
+}: ElementsListProps) {
+  return (
+    <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+      {elements.map((el) => (
+        <Col key={el.id}>
+          <ElementCard
+            element={el}
+            onAdd={onAdd}
+            showAddButton={showAddButton}
+          />
+        </Col>
+      ))}
+    </Row>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/ElementCard/ElementCard.tsx
+
+================================================================================
+import { Card, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import type { Element } from "../../types"; // Используем новые типы из types/index.ts
+import defaultImage from "../../assets/default-image.png";
+
+interface ElementCardProps {
+  element: Element;
+  // Новый проп: функция добавления (опционально, т.к. может быть скрыта)
+  onAdd?: (id: number) => void;
+  // Флаг: показывать ли кнопку добавления
+  showAddButton?: boolean;
+}
+
+export default function ElementCard({
+  element,
+  onAdd,
+  showAddButton = false,
+}: ElementCardProps) {
+  // Проверка на null image (приходит с бека)
+  const imageUrl = element.image || defaultImage;
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = defaultImage;
+  };
+
+  return (
+    <Card
+      className="h-100 shadow-sm"
+      style={{ transition: "0.3s", border: "none" }}
+    >
+      <Card.Img
+        variant="top"
+        src={imageUrl}
+        onError={handleImageError}
+        style={{ height: "200px", objectFit: "cover" }}
+      />
+      <Card.Body className="d-flex flex-column">
+        <div className="flex-grow-1">
+          <Card.Title as="h5" className="fw-bold">
+            {element.name}
+          </Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            {element.formula}
+          </Card.Subtitle>
+          <Card.Text
+            className="text-secondary small"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {element.description}
+          </Card.Text>
+        </div>
+
+        <div className="mt-3">
+          <Row className="g-2">
+            <Col xs={showAddButton ? 6 : 12}>
+              <Button
+                as={Link as any}
+                to={`/elements/${element.id}`}
+                variant="outline-primary"
+                className="w-100"
+              >
+                Подробнее
+              </Button>
+            </Col>
+
+            {showAddButton && onAdd && (
+              <Col xs={6}>
+                <Button
+                  variant="success"
+                  className="w-100"
+                  onClick={(e) => {
+                    e.preventDefault(); // Чтобы не переходить по ссылке если карточка обернута
+                    onAdd(element.id);
+                  }}
+                >
+                  В прогноз
+                </Button>
+              </Col>
+            )}
+          </Row>
+        </div>
+      </Card.Body>
+    </Card>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/Search/Search.tsx
+
+================================================================================
+import { Form, Row, Col, Button } from "react-bootstrap";
+
+interface SearchProps {
+  query: string;
+  onQueryChange: (query: string) => void;
+  onSearch: () => void;
+}
+
+export default function Search({
+  query,
+  onQueryChange,
+  onSearch,
+}: SearchProps) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSearch();
+  };
+
+  return (
+    <Form onSubmit={handleSubmit} className="w-100">
+      <Row>
+        <Col xs={8}>
+          <Form.Control
+            type="text"
+            placeholder="Введите название"
+            value={query}
+            onChange={(e) => onQueryChange(e.target.value)}
+          />
+        </Col>
+        <Col xs={4}>
+          <Button variant="primary" type="submit" className="w-100">
+            Поиск
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/LoadingSpinner.tsx
+
+================================================================================
+import { Spinner, Container } from "react-bootstrap";
+
+export default function LoadingSpinner() {
+  return (
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "200px" }}
+    >
+      <Spinner animation="border" role="status" variant="primary">
+        <span className="visually-hidden">Загрузка...</span>
+      </Spinner>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/CartWidget/CartWidget.tsx
+
+================================================================================
+import { Button, Badge } from "react-bootstrap";
+import cartIcon from "../../assets/cart.svg"; // Убедитесь, что иконка лежит здесь
+
+interface CartWidgetProps {
+  count: number;
+}
+
+export default function CartWidget({ count }: CartWidgetProps) {
+  return (
+    // position-relative нужен, чтобы значок позиционировался относительно кнопки
+    <Button variant="primary" className="position-relative" disabled>
+      <img
+        src={cartIcon}
+        alt="Корзина"
+        style={{ width: "32px", height: "32px" }}
+      />
+
+      {/* Отображаем значок, только если в корзине есть товары 
+      {count > 0 && (
+        <Badge
+          pill
+          bg="danger" // Яркий цвет для привлечения внимания
+          className="position-absolute top-0 start-100 translate-middle"
+        >
+          {count}
+        </Badge>
+      )}*/}
+      <Badge
+        pill
+        bg="danger" // Яркий цвет для привлечения внимания
+        className="position-absolute top-0 start-100 translate-middle"
+      >
+        {count}
+      </Badge>
+    </Button>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/BreadCrumbs/BreadCrumbs.tsx
+
+================================================================================
+// src/components/BreadCrumbs/BreadCrumbs.tsx
+
+import { Breadcrumb } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { ROUTES } from "../../Routes";
+
+// Интерфейс для описания одной "крошки"
+interface Crumb {
+  label: string; // Текст, который видит пользователь
+  path?: string; // Путь для ссылки (необязательный, т.к. последняя крошка не ссылка)
+}
+
+// Интерфейс для пропсов компонента
+interface BreadCrumbsProps {
+  crumbs: Crumb[];
+}
+
+export default function BreadCrumbs({ crumbs }: BreadCrumbsProps) {
+  return (
+    <Breadcrumb>
+      {/* Первая крошка - всегда ссылка на главную страницу */}
+      <LinkContainer to={ROUTES.HOME}>
+        <Breadcrumb.Item>Главная</Breadcrumb.Item>
+      </LinkContainer>
+
+      {/* Проходим по массиву крошек, который получили через props */}
+      {crumbs.map((crumb, index) => {
+        // Если у крошки есть путь и это не последняя крошка в массиве, делаем ее ссылкой
+        const isLast = index === crumbs.length - 1;
+        if (crumb.path && !isLast) {
+          return (
+            <LinkContainer key={index} to={crumb.path}>
+              <Breadcrumb.Item>{crumb.label}</Breadcrumb.Item>
+            </LinkContainer>
+          );
+        } else {
+          // Иначе делаем ее неактивным текстом
+          return (
+            <Breadcrumb.Item key={index} active>
+              {crumb.label}
+            </Breadcrumb.Item>
+          );
+        }
+      })}
+    </Breadcrumb>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/components/Header/Header.tsx
+
+================================================================================
+import { Container, Navbar, Nav, Button, Dropdown } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "../../store/store";
+import { logoutUser } from "../../store/authSlice";
+import { fetchCart } from "../../store/cartSlice";
+import { useEffect } from "react";
+// Убедись, что иконка есть, или убери img временно
+// import cartIcon from "../../assets/cart.svg";
+
+export default function Header() {
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const { count, draftId } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchCart());
+    }
+  }, [isAuthenticated, dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login");
+  };
+
+  const goToCart = () => {
+    if (draftId) navigate(`/forecasts/${draftId}`);
+    else navigate("/forecasts");
+  };
+
+  return (
+    <Navbar expand="lg" sticky="top" className="app-header" variant="dark">
+      <Container>
+        <Navbar.Brand as={Link} to="/">
+          Прогноз растворимости
+        </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/elements">
+              Элементы
+            </Nav.Link>
+            {isAuthenticated && (
+              <Nav.Link as={Link} to="/forecasts">
+                {user?.is_superuser ? "Все прогнозы" : "Мои прогнозы"}
+              </Nav.Link>
+            )}
+          </Nav>
+
+          <Nav className="align-items-center gap-3">
+            {/* Не показываем кнопки, пока идет проверка авторизации */}
+            {!isLoading &&
+              (isAuthenticated ? (
+                <>
+                  {!user?.is_superuser && (
+                    <Button variant="primary" onClick={goToCart}>
+                      Прогноз
+                      {count > 0 && (
+                        <span className="ms-2 badge bg-danger">{count}</span>
+                      )}
+                    </Button>
+                  )}
+
+                  <Dropdown align="end">
+                    <Dropdown.Toggle variant="outline-light">
+                      {user?.username}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item as={Link} to="/profile">
+                        Личный кабинет
+                      </Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item onClick={handleLogout}>
+                        Выход
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </>
+              ) : (
+                <Button as={Link} to="/login" variant="light">
+                  Войти
+                </Button>
+              ))}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/api/Api.ts
+
+================================================================================
+import $api from "./index";
+import type {
+  User,
+  Element,
+  Forecast,
+  ForecastDetail,
+  CartInfo,
+  ForecastFilters,
+  ElementForecastItem,
+} from "../types";
+
+export const Api = {
+  // --- Элементы ---
+  async getElements(nameFilter?: string) {
+    const params = new URLSearchParams();
+    if (nameFilter) params.append("element_name", nameFilter);
+    return $api.get<Element[]>(`/elements/?${params.toString()}`);
+  },
+
+  async getElement(id: number) {
+    return $api.get<Element>(`/elements/${id}/`);
+  },
+
+  async addToForecast(elementId: number) {
+    return $api.post<ElementForecastItem[]>(
+      `/elements/${elementId}/add_to_forecast/`
+    );
+  },
+
+  // --- Прогнозы (Заявки) ---
+  async getForecasts(filters?: ForecastFilters) {
+    const params = new URLSearchParams();
+    if (filters?.status) params.append("status", filters.status);
+    if (filters?.date_formation_start)
+      params.append("date_formation_start", filters.date_formation_start);
+    if (filters?.date_formation_end)
+      params.append("date_formation_end", filters.date_formation_end);
+
+    return $api.get<Forecast[]>(`/forecasts/?${params.toString()}`);
+  },
+
+  async getCartInfo() {
+    return $api.get<CartInfo>("/forecasts/cart/");
+  },
+
+  async getForecastById(id: number) {
+    return $api.get<ForecastDetail>(`/forecasts/${id}/`);
+  },
+
+  async updateForecast(id: number, data: { volume: number }) {
+    return $api.put<Forecast>(`/forecasts/${id}/update/`, data);
+  },
+
+  async submitForecast(id: number) {
+    // Пользователь формирует заявку (статус 1 -> 2)
+    // Твой бекенд требует volume, но мы его сохраняем отдельным методом updateForecast перед отправкой
+    return $api.put<Forecast>(`/forecasts/${id}/update_status_user/`);
+  },
+
+  async deleteForecast(id: number) {
+    return $api.delete(`/forecasts/${id}/delete/`);
+  },
+
+  // --- Элементы внутри прогноза (М-М) ---
+  async updateElementInForecast(
+    forecastId: number,
+    elementId: number,
+    data: { temperature: number }
+  ) {
+    return $api.put(
+      `/forecasts/${forecastId}/update_element/${elementId}/`,
+      data
+    );
+  },
+
+  async deleteElementFromForecast(forecastId: number, elementId: number) {
+    return $api.delete<ElementForecastItem[]>(
+      `/forecasts/${forecastId}/delete_element/${elementId}/`
+    );
+  },
+
+  // --- Модератор ---
+  async updateStatusAdmin(id: number, status: number) {
+    // 3 - завершить, 4 - отклонить
+    return $api.put<Forecast>(`/forecasts/${id}/update_status_admin/`, {
+      status,
+    });
+  },
+
+  // --- Auth ---
+  async login(data: any) {
+    return $api.post<User>("/users/login/", data);
+  },
+
+  async register(data: any) {
+    return $api.post<User>("/users/register/", data);
+  },
+
+  async logout() {
+    return $api.post("/users/logout/");
+  },
+
+  async getMe() {
+    return $api.get<User>("/users/info/");
+  },
+
+  async updateProfile(data: any) {
+    return $api.put<User>("/users/update/", data);
+  },
+};
+
+================================================================================
+
+
+### FILE: src/api/index.ts
+
+================================================================================
+import axios from "axios";
+
+export const API_URL = "/api";
+
+const $api = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
+});
+
+export default $api;
+
+================================================================================
+
+
+### FILE: src/modules/mock.ts
+
+================================================================================
+import { type Element } from "./ElementsTypes";
+
+export const ELEMENTS_MOCK: Element[] = [
+  {
+    id: 1,
+    name: "Карбонат кальция (Mock)",
+    description:
+      "Неорганическое соединение, соль угольной кислоты и кальция. Данные загружены из mock-файла.",
+    formula: "CaCO₃",
+    image: "/images/1.png", // Путь к картинке в Minio
+  },
+  {
+    id: 2,
+    name: "Гидроксид меди (II) (Mock)",
+    description:
+      "Нерастворимое в воде голубое твердое вещество. Данные загружены из mock-файла.",
+    formula: "Cu(OH)₂",
+    image: "/images/2.png",
+  },
+  {
+    id: 3,
+    name: "Сульфат бария (Mock)",
+    description:
+      "Нерастворимое в воде неорганическое вещество белого цвета. Данные загружены из mock-файла.",
+    formula: "BaSO₄",
+    image: null, // Пример элемента без картинки
+  },
+];
+
+================================================================================
+
+
+### FILE: src/modules/ElementsTypes.ts
+
+================================================================================
+export interface Element {
+  id: number;
+  name: string;
+  description: string;
+  formula: string;
+  image: string | null; // В вашем API поле называется 'image'
+}
+
+export interface CartInfo {
+  elements_count: number;
+  draft_forecast: number | null;
+}
+
+================================================================================
+
+
+### FILE: src/modules/ElementsApi.ts
+
+================================================================================
+import type { Element, CartInfo } from "./ElementsTypes";
+import { ELEMENTS_MOCK } from "./mock";
+
+// ... (функции listElements и getElement остаются без изменений) ...
+
+export async function listElements(nameFilter?: string): Promise<Element[]> {
+  try {
+    const params = new URLSearchParams();
+    if (nameFilter) {
+      params.append("element_name", nameFilter);
+    }
+    const url = `/api/elements/?${params.toString()}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn("API request failed. Falling back to mock data.", error);
+    if (nameFilter) {
+      return ELEMENTS_MOCK.filter((element) =>
+        element.name.toLowerCase().includes(nameFilter.toLowerCase())
+      );
+    }
+    return ELEMENTS_MOCK;
+  }
+}
+
+export async function getElement(id: number): Promise<Element | null> {
+  try {
+    const response = await fetch(`/api/elements/${id}/`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn(
+      `API request for GET element ID:${id} failed. Falling back to mock data.`,
+      error
+    );
+    return ELEMENTS_MOCK.find((element) => element.id === id) || null;
+  }
+}
+
+// Старая функция (оставляем для истории или если понадобится реальная корзина)
+export async function getCartInfo(): Promise<CartInfo> {
+  try {
+    const response = await fetch("/api/forecasts/cart/");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn("Cart API request failed. Falling back to mock data.", error);
+    return { elements_count: 0, draft_forecast: null };
+  }
+}
+
+// --- НОВАЯ ФУНКЦИЯ ---
+export async function getCartInfoMock(): Promise<CartInfo> {
+  try {
+    // Обращаемся к новому эндпоинту
+    const response = await fetch("/api/forecasts/cart/mock/");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.warn("Cart MOCK API request failed.", error);
+    // Возвращаем нули при ошибке
+    return { elements_count: 0, draft_forecast: 0 };
+  }
+}
+
+================================================================================
+
+
+### FILE: src/pages/LoginPage.tsx
+
+================================================================================
+import { useState, useEffect } from "react";
+import {
+  Container,
+  Form,
+  Button,
+  Alert,
+  Card,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, clearError } from "../store/authSlice";
+import { useNavigate } from "react-router-dom";
+import type { AppDispatch, RootState } from "../store/store";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+export default function LoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { error, isAuthenticated, isLoading } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  useEffect(() => {
+    // Редиректим ТОЛЬКО если загрузка завершена И мы точно авторизованы
+    if (!isLoading && isAuthenticated) {
+      navigate("/");
+    }
+    dispatch(clearError());
+  }, [isAuthenticated, isLoading, navigate, dispatch]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await dispatch(loginUser({ username, password }));
+  };
+
+  // Показываем спиннер, пока проверяем, авторизован ли юзер (чтобы не моргала форма)
+  if (isLoading) return <LoadingSpinner />;
+
+  return (
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col md={6} lg={4}>
+          <Card className="shadow">
+            <Card.Body className="p-4">
+              <h2 className="text-center mb-4">Вход</h2>
+
+              {error && (
+                <Alert variant="danger">
+                  {typeof error === "object" ? "Ошибка" : error}
+                </Alert>
+              )}
+
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Логин</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-4">
+                  <Form.Label>Пароль</Form.Label>
+                  <Form.Control
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="w-100">
+                  Войти
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/ProfilePage.tsx
+
+================================================================================
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Form,
+  Button,
+  Alert,
+  Card,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"; // Импортируем хук навигации
+import type { RootState, AppDispatch } from "../store/store";
+import { Api } from "../api/Api";
+import { checkAuth } from "../store/authSlice";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+export default function ProfilePage() {
+  const { user, isLoading, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate(); // Хук для перенаправления
+
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [status, setStatus] = useState<{
+    type: "success" | "danger";
+    msg: string;
+  } | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  // ГЛАВНОЕ ИСПРАВЛЕНИЕ:
+  // Если загрузка прошла, а пользователя нет - отправляем на Логин
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isLoading, isAuthenticated, navigate]);
+
+  // Заполняем поля, когда пользователь загрузился
+  useEffect(() => {
+    if (user) {
+      setEmail(user.email || "");
+      setUsername(user.username || "");
+    }
+  }, [user]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    setStatus(null);
+
+    try {
+      const dataToUpdate: any = { username, email };
+      if (password) dataToUpdate.password = password;
+
+      await Api.updateProfile(dataToUpdate);
+      await dispatch(checkAuth());
+
+      setStatus({ type: "success", msg: "Профиль сохранен" });
+      setPassword("");
+    } catch (error: any) {
+      const errorMsg = error.response?.data?.detail || "Ошибка сохранения";
+      setStatus({ type: "danger", msg: `Ошибка: ${errorMsg}` });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (isLoading) return <LoadingSpinner />;
+
+  // Если пользователя нет, ничего не рендерим (ждем редиректа)
+  if (!user) return null;
+
+  return (
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <Card className="shadow-sm">
+            <Card.Header className="bg-primary text-white">
+              <h4 className="mb-0">Личный кабинет</h4>
+            </Card.Header>
+            <Card.Body>
+              {status && <Alert variant={status.type}>{status.msg}</Alert>}
+
+              <Form onSubmit={handleSubmit}>
+                <h5 className="mb-3">Личные данные</h5>
+                <Form.Group className="mb-3">
+                  <Form.Label>Логин</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-4">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <hr />
+                <h5 className="mb-3">Безопасность</h5>
+                <Form.Group className="mb-3">
+                  <Form.Label>Сменить пароль</Form.Label>
+                  <Form.Control
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Введите новый пароль (необязательно)"
+                    autoComplete="new-password"
+                  />
+                  <Form.Text className="text-muted">
+                    Оставьте пустым, если не хотите менять.
+                  </Form.Text>
+                </Form.Group>
+
+                <div className="d-grid gap-2 mt-4">
+                  <Button variant="success" type="submit" disabled={saving}>
+                    {saving ? "Сохранение..." : "Сохранить изменения"}
+                  </Button>
+                </div>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/ForecastDetailPage.tsx
+
+================================================================================
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+  Table,
+  Alert,
+} from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "../store/store";
+import {
+  fetchForecastDetail,
+  setLocalVolume,
+  setLocalTemperature,
+  saveForecastVolume,
+  saveElementTemperature,
+  removeElement,
+  submitForecast,
+  deleteForecast,
+  adminStatusUpdate,
+} from "../store/forecastSlice";
+import { fetchCart } from "../store/cartSlice";
+
+export default function ForecastDetailPage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { current, localData, isLoading, error } = useSelector(
+    (state: RootState) => state.forecasts
+  );
+  const { user } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (id) dispatch(fetchForecastDetail(parseInt(id)));
+  }, [id, dispatch]);
+
+  if (!current) return <div>Загрузка...</div>;
+
+  const { forecast, elements } = current;
+  const isDraft = forecast.status === 1;
+  const isOwner = user?.username === forecast.owner;
+  const isModerator = user?.is_superuser;
+  const isSubmitted = forecast.status === 2; // "В работе"
+
+  // Обработчики
+  const handleVolumeBlur = () => {
+    if (localData.volume !== String(forecast.volume)) {
+      dispatch(
+        saveForecastVolume({
+          id: forecast.id,
+          volume: Number(localData.volume),
+        })
+      );
+    }
+  };
+
+  const handleTempBlur = (elementId: number) => {
+    dispatch(
+      saveElementTemperature({
+        forecastId: forecast.id,
+        elementId,
+        temperature: Number(localData.temperatures[elementId]),
+      })
+    );
+  };
+
+  const handleSubmit = async () => {
+    // Валидация
+    if (!forecast.volume) {
+      alert("Введите объем!");
+      return;
+    }
+    await dispatch(submitForecast(forecast.id));
+    dispatch(fetchCart()); // Обновить корзину (она исчезнет)
+    navigate("/forecasts");
+  };
+
+  const handleDelete = async () => {
+    if (confirm("Удалить черновик?")) {
+      await dispatch(deleteForecast(forecast.id));
+      dispatch(fetchCart());
+      navigate("/elements");
+    }
+  };
+
+  const handleAdminAction = async (status: number) => {
+    await dispatch(adminStatusUpdate({ id: forecast.id, status }));
+    navigate("/forecasts");
+  };
+
+  return (
+    <Container className="py-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1>Прогноз №{forecast.id}</h1>
+        <h3>
+          Статус:{" "}
+          {forecast.status === 1
+            ? "Черновик"
+            : forecast.status === 3
+            ? "Завершен"
+            : "В обработке"}
+        </h3>
+      </div>
+
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {/* Блок основной информации */}
+      <Card className="mb-4 p-3">
+        <Form.Group as={Row}>
+          <Form.Label column sm={2}>
+            Объем раствора (мл):
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control
+              type="number"
+              value={localData.volume}
+              onChange={(e) => dispatch(setLocalVolume(e.target.value))}
+              onBlur={handleVolumeBlur}
+              disabled={!isDraft}
+            />
+          </Col>
+          {forecast.status === 3 && (
+            <Col
+              sm={4}
+              className="text-success fw-bold d-flex align-items-center"
+            >
+              Расчет завершен{" "}
+              {new Date(forecast.date_complete!).toLocaleDateString()}
+            </Col>
+          )}
+        </Form.Group>
+      </Card>
+
+      {/* Список элементов */}
+      <h4>Элементы в составе:</h4>
+      <Table bordered>
+        <thead>
+          <tr>
+            <th>Элемент</th>
+            <th>Формула</th>
+            <th>Температура (°C)</th>
+            {forecast.status === 3 && <th>Масса осадка (г) [Результат]</th>}
+            {isDraft && <th>Действия</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {elements.map((item) => (
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.formula}</td>
+              <td>
+                <Form.Control
+                  type="number"
+                  value={localData.temperatures[item.id] || ""}
+                  onChange={(e) =>
+                    dispatch(
+                      setLocalTemperature({
+                        id: item.id,
+                        val: e.target.value,
+                      })
+                    )
+                  }
+                  onBlur={() => handleTempBlur(item.id)}
+                  disabled={!isDraft}
+                  style={{ maxWidth: "100px" }}
+                />
+              </td>
+              {forecast.status === 3 && (
+                <td className="fw-bold text-primary">
+                  {item.weight ? item.weight.toFixed(4) : "Ошибка расчета"}
+                </td>
+              )}
+              {isDraft && (
+                <td>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() =>
+                      dispatch(
+                        removeElement({
+                          forecastId: forecast.id,
+                          elementId: item.id,
+                        })
+                      )
+                    }
+                  >
+                    Удалить
+                  </Button>
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      {/* Кнопки действий */}
+      <div className="mt-4 d-flex gap-3">
+        {isDraft && isOwner && (
+          <>
+            <Button variant="success" size="lg" onClick={handleSubmit}>
+              Сформировать прогноз
+            </Button>
+            <Button variant="outline-danger" onClick={handleDelete}>
+              Удалить черновик
+            </Button>
+          </>
+        )}
+
+        {isModerator && isSubmitted && (
+          <>
+            <Button variant="success" onClick={() => handleAdminAction(3)}>
+              Завершить (Рассчитать)
+            </Button>
+            <Button variant="danger" onClick={() => handleAdminAction(4)}>
+              Отклонить
+            </Button>
+          </>
+        )}
+      </div>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/ForecastsPage.tsx
+
+================================================================================
+import { useEffect, useState } from "react";
+import {
+  Container,
+  Table,
+  Badge,
+  Form,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "../store/store";
+import { fetchForecasts } from "../store/forecastSlice";
+import LoadingSpinner from "../components/LoadingSpinner"; // Возьми из примера или сделай простой
+
+const STATUS_MAP: Record<number, string> = {
+  1: "Черновик",
+  2: "В работе",
+  3: "Завершен",
+  4: "Отклонен",
+  5: "Удален",
+};
+
+export default function ForecastsPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { list, isLoading } = useSelector(
+    (state: RootState) => state.forecasts
+  );
+  const { user } = useSelector((state: RootState) => state.auth);
+
+  const [statusFilter, setStatusFilter] = useState("");
+
+  // Для модератора поллинг
+  useEffect(() => {
+    const load = () => dispatch(fetchForecasts({ status: statusFilter }));
+    load();
+
+    let interval: any;
+    if (user?.is_superuser) {
+      interval = setInterval(load, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [dispatch, user, statusFilter]);
+
+  if (isLoading && list.length === 0) return <LoadingSpinner />;
+
+  return (
+    <Container className="py-4">
+      <h2>
+        {user?.is_superuser ? "Все прогнозы (Модерация)" : "Мои прогнозы"}
+      </h2>
+
+      <Row className="mb-3">
+        <Col md={3}>
+          <Form.Select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="">Все статусы</option>
+            <option value="2">В работе (Сформирован)</option>
+            <option value="3">Завершен</option>
+            <option value="4">Отклонен</option>
+          </Form.Select>
+        </Col>
+        <Col>
+          <Button
+            onClick={() => dispatch(fetchForecasts({ status: statusFilter }))}
+          >
+            Обновить
+          </Button>
+        </Col>
+      </Row>
+
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Дата создания</th>
+            <th>Дата формирования</th>
+            <th>Статус</th>
+            {user?.is_superuser && <th>Создатель</th>}
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((f) => (
+            <tr key={f.id}>
+              <td>{f.id}</td>
+              <td>{new Date(f.date_created).toLocaleDateString()}</td>
+              <td>
+                {f.date_formation
+                  ? new Date(f.date_formation).toLocaleDateString()
+                  : "-"}
+              </td>
+              <td>
+                <Badge
+                  bg={
+                    f.status === 2
+                      ? "primary"
+                      : f.status === 3
+                      ? "success"
+                      : "secondary"
+                  }
+                >
+                  {STATUS_MAP[f.status]}
+                </Badge>
+              </td>
+              {user?.is_superuser && <td>{f.owner}</td>}
+              <td>
+                <Link
+                  to={`/forecasts/${f.id}`}
+                  className="btn btn-sm btn-outline-primary"
+                >
+                  Открыть
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/ElementsPage.tsx
+
+================================================================================
+import { useEffect, useState } from "react";
+import { Container, Alert, Col, Toast, ToastContainer } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "../store/store";
+import { setSearchQuery } from "../store/filterSlice";
+import { fetchCart } from "../store/cartSlice"; // Для обновления счетчика в шапке
+
+import BreadCrumbs from "../components/BreadCrumbs/BreadCrumbs";
+import { ROUTE_LABELS } from "../Routes"; // Если используешь Routes.ts, или просто хардкод
+import { Api } from "../api/Api"; // Наше API
+import type { Element } from "../types";
+
+import Search from "../components/Search/Search";
+import ElementsList from "../components/ElementsList/ElementsList";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+export default function ElementsPage() {
+  const [elements, setElements] = useState<Element[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Состояние для Toast уведомления
+  const [toastMsg, setToastMsg] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
+  // Redux
+  const dispatch = useDispatch<AppDispatch>();
+  const searchQuery = useSelector(
+    (state: RootState) => state.filter.searchQuery
+  );
+  const { user, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  // Загрузка данных
+  const loadElements = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      // Используем метод из Api.ts, который вызывает бекенд
+      const response = await Api.getElements(searchQuery);
+      setElements(response.data);
+
+      if (response.data.length === 0 && searchQuery) {
+        setError(`Элементы по запросу "${searchQuery}" не найдены.`);
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError("Не удалось загрузить список элементов.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Эффект при монтировании и изменении поиска (если хотим автопоиск, но у нас кнопка)
+  // В ЛР1 была кнопка, здесь можно оставить так же.
+  useEffect(() => {
+    loadElements();
+  }, []);
+
+  const handleSearch = () => {
+    loadElements();
+  };
+
+  const handleQueryChange = (val: string) => {
+    dispatch(setSearchQuery(val));
+  };
+
+  // --- ЛОГИКА ДОБАВЛЕНИЯ В ПРОГНОЗ ---
+  const handleAddToForecast = async (elementId: number) => {
+    if (!isAuthenticated) {
+      setToastMsg("Пожалуйста, авторизуйтесь для создания прогноза.");
+      setShowToast(true);
+      return;
+    }
+
+    try {
+      await Api.addToForecast(elementId);
+      // После успешного добавления обновляем состояние корзины в Redux
+      dispatch(fetchCart());
+
+      setToastMsg("Элемент успешно добавлен в прогноз!");
+      setShowToast(true);
+    } catch (err: any) {
+      // Если 405 Method Not Allowed - значит элемент уже есть в заявке (по логике бека)
+      if (err.response?.status === 405) {
+        setToastMsg("Этот элемент уже добавлен в текущий черновик.");
+      } else {
+        setToastMsg(
+          "Ошибка добавления: " +
+            (err.response?.data?.detail || "Неизвестная ошибка")
+        );
+      }
+      setShowToast(true);
+    }
+  };
+
+  // Условие отображения кнопки:
+  // Пользователь авторизован И он НЕ суперюзер (модераторы обычно только проверяют)
+  // В твоей логике: Moderator views/approves, User creates.
+  const showAddButton = isAuthenticated && !user?.is_superuser;
+
+  return (
+    <Container className="py-5 mt-3 position-relative">
+      {/* Toast Notification */}
+      <ToastContainer
+        position="top-end"
+        className="p-3"
+        style={{ zIndex: 1050 }}
+      >
+        <Toast
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          delay={3000}
+          autohide
+          bg="light"
+        >
+          <Toast.Header>
+            <strong className="me-auto">Система</strong>
+          </Toast.Header>
+          <Toast.Body>{toastMsg}</Toast.Body>
+        </Toast>
+      </ToastContainer>
+
+      {/* Breadcrumbs можно убрать или оставить, если есть компонент */}
+      <BreadCrumbs crumbs={[{ label: ROUTE_LABELS.ELEMENTS }]} />
+
+      <div className="page-controls mt-3 mb-4">
+        <Col md={8}>
+          <Search
+            query={searchQuery}
+            onQueryChange={handleQueryChange}
+            onSearch={handleSearch}
+          />
+        </Col>
+      </div>
+
+      {loading ? (
+        <LoadingSpinner />
+      ) : error && elements.length === 0 ? (
+        <Alert variant="warning" className="text-center">
+          {error}
+        </Alert>
+      ) : (
+        <ElementsList
+          elements={elements}
+          onAdd={handleAddToForecast}
+          showAddButton={showAddButton}
+        />
+      )}
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/ElementPage.tsx
+
+================================================================================
+// src/pages/ElementPage.tsx
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  Spinner,
+  Container,
+  Row,
+  Col,
+  Image,
+  Alert,
+  Button,
+} from "react-bootstrap";
+import BreadCrumbs from "../components/BreadCrumbs/BreadCrumbs";
+import { ROUTES, ROUTE_LABELS } from "../Routes";
+import { getElement } from "../modules/ElementsApi";
+import type { Element } from "../modules/ElementsTypes";
+import defaultImage from "../assets/default-image.png";
+
+export default function ElementPage() {
+  const [element, setElement] = useState<Element | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { id } = useParams<{ id: string }>(); // Получаем id из URL
+
+  useEffect(() => {
+    if (!id) {
+      setLoading(false);
+      setError("ID элемента не указан в URL.");
+      return;
+    }
+
+    setLoading(true);
+    getElement(Number(id))
+      .then((data) => {
+        if (data) {
+          setElement(data);
+        } else {
+          setError("Элемент с таким ID не найден.");
+        }
+      })
+      .catch(() => {
+        setError("Произошла ошибка при загрузке данных.");
+      })
+      .finally(() => setLoading(false));
+  }, [id]); // Эффект будет перезапускаться, если id изменится
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = defaultImage;
+  };
+
+  if (loading) {
+    return (
+      <Container className="text-center py-5">
+        <Spinner animation="border" style={{ width: "3rem", height: "3rem" }} />
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container className="text-center py-5">
+        <Alert variant="danger">{error}</Alert>
+        <Button as={Link as any} to={ROUTES.ELEMENTS} variant="primary">
+          Вернуться к списку
+        </Button>
+      </Container>
+    );
+  }
+
+  // element не может быть null на этом этапе, но TypeScript этого не знает
+  if (!element) return null;
+
+  return (
+    <Container as="main" className="py-4">
+      <BreadCrumbs
+        crumbs={[
+          { label: ROUTE_LABELS.ELEMENTS, path: ROUTES.ELEMENTS },
+          { label: element.name }, // Последняя крошка - не ссылка
+        ]}
+      />
+      <Row className="mt-4 g-4">
+        <Col md={5} lg={4}>
+          <Image
+            src={element.image || defaultImage}
+            onError={handleImageError}
+            fluid
+            rounded
+            className="shadow-sm"
+          />
+        </Col>
+        <Col md={7} lg={8} className="d-flex flex-column">
+          <h1>{element.name}</h1>
+          <p className="text-muted fs-5">Формула: {element.formula}</p>
+          <p className="mt-3 flex-grow-1">{element.description}</p>
+          <div className="mt-4">
+            <Button
+              as={Link as any as any}
+              to={ROUTES.ELEMENTS}
+              variant="primary"
+            >
+              Назад к списку
+            </Button>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/pages/HomePage.tsx
+
+================================================================================
+import { Container } from "react-bootstrap";
+
+export default function HomePage() {
+  return (
+    <div
+      style={{
+        position: "relative",
+        // Высота рассчитывается так, чтобы занять все место под хедером
+        height: "calc(100vh - 56px)",
+        width: "100%",
+        overflow: "hidden",
+      }}
+    >
+      {/* Фоновое видео */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          width: "100vw", // Растягиваем на ширину вьюпорта
+          height: "100vh", // Растягиваем на высоту вьюпорта (с запасом)
+          objectFit: "cover", // Сохраняем пропорции, обрезая лишнее
+          transform: "translate(-50%, -50%)",
+          zIndex: 0,
+        }}
+      >
+        <source src="/background.mp4" type="video/mp4" />
+        Ваш браузер не поддерживает видео.
+      </video>
+
+      {/* Затемнение */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.6)", // Чуть темнее для контраста
+          zIndex: 1,
+        }}
+      ></div>
+
+      {/* Контент */}
+      <Container
+        className="d-flex flex-column justify-content-center align-items-center text-center h-100"
+        style={{ position: "relative", zIndex: 2, color: "#fff" }}
+      >
+        <h1 className="display-3 fw-bold">Прогноз растворимости осадка</h1>
+        <p className="lead my-4">
+          Веб-приложение для анализа и прогнозирования растворимости химических
+          элементов.
+        </p>
+      </Container>
+    </div>
+  );
+}
+
+================================================================================
+
+
+### FILE: src/store/store.tsx
+
+================================================================================
+import { configureStore } from "@reduxjs/toolkit";
+import filterReducer from "./filterSlice"; // Оставь из ЛР6
+import authReducer from "./authSlice";
+import forecastReducer from "./forecastSlice";
+import cartReducer from "./cartSlice";
+
+export const store = configureStore({
+  reducer: {
+    filter: filterReducer,
+    auth: authReducer,
+    forecasts: forecastReducer,
+    cart: cartReducer,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+================================================================================
+
+
+### FILE: src/store/forecastSlice.ts
+
+================================================================================
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+
+import { Api } from "../api/Api";
+import type { Forecast, ForecastDetail, ForecastFilters } from "../types";
+
+interface ForecastState {
+  list: Forecast[];
+  current: ForecastDetail | null;
+  isLoading: boolean;
+  error: string | null;
+  // Локальные данные для редактирования (чтобы не отправлять запрос на каждую букву)
+  localData: {
+    volume: string; // Строка для удобства ввода
+    temperatures: Record<number, string>; // element_id -> value
+  };
+}
+
+const initialState: ForecastState = {
+  list: [],
+  current: null,
+  isLoading: false,
+  error: null,
+  localData: { volume: "", temperatures: {} },
+};
+
+export const fetchForecasts = createAsyncThunk(
+  "forecasts/list",
+  async (filters: ForecastFilters | undefined, { rejectWithValue }) => {
+    try {
+      const response = await Api.getForecasts(filters);
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const fetchForecastDetail = createAsyncThunk(
+  "forecasts/detail",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await Api.getForecastById(id);
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const saveForecastVolume = createAsyncThunk(
+  "forecasts/saveVolume",
+  async (
+    { id, volume }: { id: number; volume: number },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await Api.updateForecast(id, { volume });
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(
+        err.response?.data?.error || "Error saving volume"
+      );
+    }
+  }
+);
+
+export const saveElementTemperature = createAsyncThunk(
+  "forecasts/saveTemperature",
+  async (
+    {
+      forecastId,
+      elementId,
+      temperature,
+    }: { forecastId: number; elementId: number; temperature: number },
+    { rejectWithValue }
+  ) => {
+    try {
+      await Api.updateElementInForecast(forecastId, elementId, { temperature });
+      return { elementId, temperature };
+    } catch (err: any) {
+      return rejectWithValue(
+        err.response?.data?.error || "Error saving temperature"
+      );
+    }
+  }
+);
+
+export const removeElement = createAsyncThunk(
+  "forecasts/removeElement",
+  async ({
+    forecastId,
+    elementId,
+  }: {
+    forecastId: number;
+    elementId: number;
+  }) => {
+    const response = await Api.deleteElementFromForecast(forecastId, elementId);
+    return response.data; // Возвращает обновленный список элементов
+  }
+);
+
+export const submitForecast = createAsyncThunk(
+  "forecasts/submit",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await Api.submitForecast(id);
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(
+        err.response?.data?.error || "Ошибка формирования"
+      );
+    }
+  }
+);
+
+export const adminStatusUpdate = createAsyncThunk(
+  "forecasts/adminUpdate",
+  async ({ id, status }: { id: number; status: number }) => {
+    const response = await Api.updateStatusAdmin(id, status);
+    return response.data;
+  }
+);
+
+export const deleteForecast = createAsyncThunk(
+  "forecasts/delete",
+  async (id: number) => {
+    await Api.deleteForecast(id);
+    return id;
+  }
+);
+
+const forecastSlice = createSlice({
+  name: "forecasts",
+  initialState,
+  reducers: {
+    setLocalVolume: (state, action: PayloadAction<string>) => {
+      state.localData.volume = action.payload;
+    },
+    setLocalTemperature: (
+      state,
+      action: PayloadAction<{ id: number; val: string }>
+    ) => {
+      state.localData.temperatures[action.payload.id] = action.payload.val;
+    },
+    resetCurrent: (state) => {
+      state.current = null;
+      state.localData = { volume: "", temperatures: {} };
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      // LIST
+      .addCase(fetchForecasts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchForecasts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.list = action.payload;
+      })
+      // DETAIL
+      .addCase(fetchForecastDetail.fulfilled, (state, action) => {
+        // Ответ бекенда - это объект прогноза, внутри которого лежит массив elements
+        const data = action.payload;
+
+        // 1. Формируем структуру state.current вручную
+        state.current = {
+          forecast: {
+            // Берем все поля прогноза, исключая массив elements (чтобы не дублировать)
+            id: data.id,
+            status: data.status,
+            date_created: data.date_created,
+            date_formation: data.date_formation,
+            date_complete: data.date_complete,
+            owner: data.owner,
+            moderator: data.moderator,
+            volume: data.volume,
+          },
+          elements: data.elements, // Массив элементов отдельно
+        };
+
+        // 2. Инициализируем локальные данные для редактирования
+        // ВАЖНО: берем volume напрямую из data (так как data - это сам прогноз)
+        state.localData.volume =
+          data.volume !== null ? data.volume.toString() : "";
+
+        const temps: Record<number, string> = {};
+
+        // ВАЖНО: используем item.id, так как мы поправили типы
+        if (Array.isArray(data.elements)) {
+          data.elements.forEach((el: any) => {
+            temps[el.id] =
+              el.temperature !== null ? el.temperature.toString() : "";
+          });
+        }
+
+        state.localData.temperatures = temps;
+        state.isLoading = false;
+      })
+
+      // UPDATE Volume
+      .addCase(saveForecastVolume.fulfilled, (state, action) => {
+        if (state.current) state.current.forecast = action.payload;
+      })
+      // DELETE Element
+      .addCase(removeElement.fulfilled, (state, action) => {
+        if (state.current) {
+          // Бекенд возвращает список ElementItemSerializer
+          // Но нам нужно маппить его обратно в формат ForecastDetail['elements']
+          // В данном случае проще удалить локально или перезапросить детальку
+          // Для простоты перезапишем (в реальной лр6 бекенд возвращает список)
+          state.current.elements = action.payload as any;
+        }
+      })
+      // SUBMIT
+      .addCase(submitForecast.fulfilled, (state, action) => {
+        if (state.current) state.current.forecast = action.payload;
+      })
+      // ADMIN
+      .addCase(adminStatusUpdate.fulfilled, (state, action) => {
+        if (state.current) state.current.forecast = action.payload;
+      });
+  },
+});
+
+export const { setLocalVolume, setLocalTemperature, resetCurrent } =
+  forecastSlice.actions;
+export default forecastSlice.reducer;
+
+================================================================================
+
+
+### FILE: src/store/cartSlice.ts
+
+================================================================================
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../api/Api";
+
+interface CartState {
+  count: number;
+  draftId: number | null;
+}
+
+const initialState: CartState = { count: 0, draftId: null };
+
+export const fetchCart = createAsyncThunk("cart/fetch", async () => {
+  const response = await Api.getCartInfo();
+  return response.data;
+});
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchCart.fulfilled, (state, action) => {
+      state.count = action.payload.elements_count;
+      state.draftId = action.payload.draft_forecast;
+    });
+  },
+});
+
+export default cartSlice.reducer;
+
+================================================================================
+
+
+### FILE: src/store/authSlice.ts
+
+================================================================================
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../api/Api";
+import type { User } from "../types";
+
+interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  error: string | null;
+}
+
+const initialState: AuthState = {
+  user: null,
+  isAuthenticated: false, // <--- ДОЛЖНО БЫТЬ FALSE
+  isLoading: true, // <--- TRUE, чтобы приложение сначала проверило сессию
+  error: null,
+};
+
+// Проверка сессии при загрузке страницы
+export const checkAuth = createAsyncThunk(
+  "auth/check",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await Api.getMe();
+      // Если сервер вернул пустой объект или null, считаем что не авторизован
+      if (!response.data || !response.data.id) {
+        throw new Error("Not logged in");
+      }
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Not authorized");
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  "auth/login",
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await Api.login(data);
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.error || "Ошибка входа");
+    }
+  }
+);
+
+export const logoutUser = createAsyncThunk("auth/logout", async () => {
+  await Api.logout();
+});
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      // --- CHECK AUTH ---
+      .addCase(checkAuth.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.isAuthenticated = true; // Успех - мы авторизованы
+        state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(checkAuth.rejected, (state) => {
+        state.isAuthenticated = false; // Ошибка - мы ГОСТЬ
+        state.user = null;
+        state.isLoading = false;
+      })
+
+      // --- LOGIN ---
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isAuthenticated = true;
+        state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isAuthenticated = false;
+        state.error = action.payload as string;
+        state.isLoading = false;
+      })
+
+      // --- LOGOUT ---
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isAuthenticated = false;
+        state.user = null;
+      });
+  },
+});
+
+export const { clearError } = authSlice.actions;
+export default authSlice.reducer;
+
+================================================================================
+
+
+### FILE: src/store/filterSlice.tsx
+
+================================================================================
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit"; // <--- Исправление здесь
+
+interface FilterState {
+  searchQuery: string;
+}
+
+const initialState: FilterState = {
+  searchQuery: "",
+};
+
+export const filterSlice = createSlice({
+  name: "filter",
+  initialState,
+  reducers: {
+    // Теперь TypeScript понимает, что это типизация аргумента
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+      state.searchQuery = action.payload;
+    },
+  },
+});
+
+export const { setSearchQuery } = filterSlice.actions;
+export default filterSlice.reducer;
+
+================================================================================
